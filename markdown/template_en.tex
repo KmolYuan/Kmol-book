@@ -152,7 +152,7 @@ $endif$
 $if(tables)$
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
 $endif$
 $if(graphics)$
 \usepackage{graphicx,grffile}
@@ -439,7 +439,7 @@ Research              & $title_en$ \\ \hline
 \multicolumn{2}{||l||}{Published papers} \\ \hline
 $for(papers)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$papers$} \\ \hline $endfor$
 \multicolumn{2}{||l||}{Professional licenses} \\ \hline
-$for(papers)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$licenses$} \\ \hline $endfor$
+$for(licenses)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$licenses$} \\ \hline $endfor$
 \end{tabular}
 \end{center}
 \vspace{\fill}

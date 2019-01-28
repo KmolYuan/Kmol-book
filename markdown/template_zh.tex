@@ -417,6 +417,35 @@ $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
 
+$if(curriculum_vitae_title)$
+\chapter*{$curriculum_vitae_title$}
+\addcontentsline{toc}{chapter}{$curriculum_vitae_title$}
+\begin{center}
+\begin{tabular}{||l|l||}
+\hline
+\multicolumn{2}{||c||}{\includegraphics{$mug$}} \\ \hline
+姓名    & $author_zh$ \\ \hline
+性別    & $gender$ \\ \hline
+出生日期 & $birth$ \\ \hline
+出生縣市 & $birthplace$ \\ \hline
+最高學歷 & \begin{tabular}[x]{@{}l@{}}
+            $university_zh$ \\
+            $institute_zh$ 碩士
+        \end{tabular} \\ \hline
+次高學歷 & \begin{tabular}[x]{@{}l@{}}
+            $university_zh$ \\
+            $institute_zh$ 學士
+        \end{tabular} \\ \hline
+研究    & $title_zh$ \\ \hline
+\multicolumn{2}{||l||}{已發表著作} \\ \hline
+$for(papers)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$papers$} \\ \hline $endfor$
+\multicolumn{2}{||l||}{專業證照} \\ \hline
+$for(licenses)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$licenses$} \\ \hline $endfor$
+\end{tabular}
+\end{center}
+\vspace{\fill}
+$endif$
+
 $if(include-after)$
 \newpage
 $for(include-after)$
