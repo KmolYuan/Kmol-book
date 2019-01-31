@@ -35,7 +35,8 @@ $if(euro)$
 $endif$
 
 $if(CJKmainfont)$
-    \usepackage{xeCJK}
+    \usepackage{xeCJK, zhnumber, indentfirst, CJKnumb}
+    \zhnumsetup{style={Traditional}}
     % 中文自動換行
     \XeTeXlinebreaklocale "zh"
     % 文字的彈性間距
@@ -45,25 +46,23 @@ $if(CJKmainfont)$
     \def\LARGE{\fontsize{20}{30}\selectfont}%章次
     \def\Large{\fontsize{16}{24}\selectfont}%節次
     \def\large{\fontsize{14}{21}\selectfont}%小節次
-    \usepackage{indentfirst}
-    \usepackage{CJKnumb}
     \renewcommand{\figurename}{圖}
     \renewcommand{\thefigure}{{\arabic{chapter}}.\arabic{figure}}
     \renewcommand{\tablename}{表}
     \renewcommand{\thetable}{{\arabic{chapter}}.\arabic{table}}
     \renewcommand{\theequation}{{\arabic{chapter}}.\arabic{equation}}
-    %重製章節
+    % 重製章節
     \renewcommand{\chaptername}{}
-    \renewcommand{\thechapter}{第\CJKnumber{\arabic{chapter}}章}
+    \renewcommand{\thechapter}{第\zhnum{chapter}章}
     \renewcommand{\thesection}{{\arabic{chapter}}.\arabic{section}}
     \renewcommand{\thesubsection}{{\arabic{chapter}}.{\arabic{section}}.\arabic{subsection}}
-    %設定行距與中英文字型
+    % 設定行距與中英文字型
     \linespread{1}\selectfont
     \setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.4]{$CJKmainfont$}
     \setmainfont{Times New Roman}
     \setromanfont{Times New Roman}
     \setmonofont{Times New Roman}
-    %重製章節標籤
+    % 重製章節標籤
     \usepackage{titlesec}
     \titleformat{\chapter}[block]{\LARGE\centering}{\thechapter}{0.5em}{}
     \titleformat{\section}[block]{\Large}{\thesection}{0.5em}{}
@@ -388,16 +387,15 @@ $if(toc)$
 \endgroup
 $endif$
 
-$if(symbols_title)$
-\chapter*{$symbols_title$}
-\addcontentsline{toc}{chapter}{$symbols_title$}
+\chapter*{符號說明}
+\addcontentsline{toc}{chapter}{符號說明}
 \fontsize{14}{21}\selectfont{$symbols$}
-$endif$
 
 % Start normal page number, 1 2 3
 \mainmatter
 $body$
 
+% NatBib
 $if(natbib)$
 $if(bibliography)$
     \renewcommand{\chaptername}{}
@@ -413,8 +411,21 @@ $if(bibliography)$
 $endif$
 $endif$
 
+% Biblatex
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+% Appendix
+$if(include-after)$
+\newcounter{appendix_counter}
+\setcounter{appendix_counter}{1}
+\renewcommand{\thechapter}{附錄\zhnum{appendix_counter}}  % 附錄\CJKnumber{\arabic{appendix_counter}}
+$for(include-after)$
+\newpage
+$include-after$
+\addtocounter{appendix_counter}{1}
+$endfor$
 $endif$
 
 $if(curriculum_vitae_title)$
@@ -438,18 +449,12 @@ $if(curriculum_vitae_title)$
         \end{tabular} \\ \hline
 研究    & $title_zh$ \\ \hline
 \multicolumn{2}{||l||}{已發表著作} \\ \hline
-$for(papers)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$papers$} \\ \hline $endfor$
+$for(papers)$\multicolumn{2}{||p{0.6\paperwidth}||}{$papers$} \\ \hline$endfor$
 \multicolumn{2}{||l||}{專業證照} \\ \hline
-$for(licenses)$ \multicolumn{2}{||p{0.6\paperwidth}||}{$licenses$} \\ \hline $endfor$
+$for(licenses)$\multicolumn{2}{||p{0.6\paperwidth}||}{$licenses$} \\ \hline$endfor$
 \end{tabular}
 \end{center}
 \vspace{\fill}
 $endif$
 
-$if(include-after)$
-\newpage
-$for(include-after)$
-$include-after$
-$endfor$
-$endif$
 \end{document}
