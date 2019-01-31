@@ -415,45 +415,18 @@ $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
 % Appendix
 $if(include-after)$
 \newcounter{appendix}
 \setcounter{appendix}{1}
-\renewcommand{\thechapter}{Appendix \Alph{appendix}}
+\renewcommand{\thechapter}{Appendix \Roman{appendix}}
 $for(include-after)$
 \newpage
 $include-after$
 \addtocounter{appendix}{1}
 $endfor$
-$endif$
-
-$if(curriculum_vitae_title)$
-\chapter*{$curriculum_vitae_title$}
-\addcontentsline{toc}{chapter}{$curriculum_vitae_title$}
-\begin{center}
-\begin{tabular}{||l|l||}
-\hline
-\multicolumn{2}{||c||}{\includegraphics{$mug$}} \\ \hline
-Name                  & $author_en$ \\ \hline
-Gender                & $gender$ \\ \hline
-Date of birth         & $birth$ \\ \hline
-Birthplace            & $birthplace$ \\ \hline
-Highest education     & \begin{tabular}[x]{@{}l@{}}
-                            $institute_en$ Master \\
-                            from $university_en$
-                        \end{tabular} \\ \hline
-Secondary education   & \begin{tabular}[x]{@{}l@{}}
-                            $institute_en$ \\
-                            from $university_en$
-                        \end{tabular} \\ \hline
-Research              & $title_en$ \\ \hline
-\multicolumn{2}{||l||}{Published papers} \\ \hline
-$for(papers)$\multicolumn{2}{||p{0.6\paperwidth}||}{$papers$} \\ \hline$endfor$
-\multicolumn{2}{||l||}{Professional licenses} \\ \hline
-$for(licenses)$\multicolumn{2}{||p{0.6\paperwidth}||}{$licenses$} \\ \hline$endfor$
-\end{tabular}
-\end{center}
-\vspace{\fill}
 $endif$
 
 \end{document}

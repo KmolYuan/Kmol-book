@@ -17,7 +17,6 @@ title_page: |
     for the Degree of Master of Science in
 
     Mechanical Design Engineering
-
 title_zh: 標題
 title_en: Title
 author_zh:
@@ -29,7 +28,6 @@ date_en: |
     xxx, xxx
 
     Huwei, Yunlin, Taiwan, Republic of China
-
 watermark: images/watermark
 abstract_zh: |
     本研究 ...
@@ -38,7 +36,6 @@ abstract_zh: |
 
     \noindent
     關鍵詞：
-
 abstract_en: |
     About my project ...
 
@@ -46,24 +43,9 @@ abstract_en: |
 
     \noindent
     **Keywords:**
-
 acknowledgements: |
     感謝很多人。
-
-symbols_title: Symbols
 symbols: |
     | Symbols | Descriptions |
     |:-------:|:-------------|
-
-curriculum_vitae_title: Curriculum Vitae
-mug: images/mug.jpg
-gender:
-birth:
-birthplace:
-papers:
-    -
-licenses:
-    - A
-    - B
-    - C
 ---
