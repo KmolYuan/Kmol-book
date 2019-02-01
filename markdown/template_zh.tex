@@ -47,15 +47,15 @@ $if(CJKmainfont)$
     \def\Large{\fontsize{16}{24}\selectfont}%節次
     \def\large{\fontsize{14}{21}\selectfont}%小節次
     \renewcommand{\figurename}{圖}
-    \renewcommand{\thefigure}{{\arabic{chapter}}.\arabic{figure}}
+    \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
     \renewcommand{\tablename}{表}
-    \renewcommand{\thetable}{{\arabic{chapter}}.\arabic{table}}
-    \renewcommand{\theequation}{{\arabic{chapter}}.\arabic{equation}}
+    \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+    \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
     % 重製章節
     \renewcommand{\chaptername}{}
     \renewcommand{\thechapter}{第\zhnum{chapter}章}
-    \renewcommand{\thesection}{{\arabic{chapter}}.\arabic{section}}
-    \renewcommand{\thesubsection}{{\arabic{chapter}}.{\arabic{section}}.\arabic{subsection}}
+    \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+    \renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
     % 設定行距與中英文字型
     \linespread{1}\selectfont
     \setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.4]{$CJKmainfont$}
@@ -423,6 +423,8 @@ $if(include-after)$
 \newcounter{appendix_counter}
 \setcounter{appendix_counter}{1}
 \renewcommand{\thechapter}{附錄\zhnum{appendix_counter}}
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}-\arabic{subsection}}
 $for(include-after)$
 \newpage
 $include-after$
