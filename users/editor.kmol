@@ -3,25 +3,26 @@
 data:
   -8274138291052271170: ''
   -7910370536418068563: "import os\nimport platform\n\nchdir(QDir(root_path).filePath('../markdown'))\n\
-    \nlanguage = \"zh\"\nsystem = platform.system()\nif system == \"Linux\":\n   \
-    \ font = \"ukai.ttc\"\nelif system == \"Windows\":\n    font = \"DFKai-SB\"\n\
-    elif system == \"Darwin\":\n    font = \"DFKaiShu-SB-Estd-BF\"\nelse:\n    font\
-    \ = \"Arial\"\nfontsize = \"12\"\nmargin = \"1in\"\n\ncommand_main = \"pandoc\
-    \ -o ../pdf/report.pdf cover_and_abstract.yml\"\ncommand_sub_target = []\n\nfor\
-    \ i in range(root.childCount()):\n    node1 = root.child(i)\n    if node1.text(0)\
-    \ != 'markdown':\n        continue\n    for j in range(node1.childCount()):\n\
+    \nlanguage = \"en\"\nsystem = platform.system()\nif system == \"Linux\":\n   \
+    \ font = \"ukai.ttc\"\n    monofont = \"\\\"Ubuntu Mono\\\"\"\nelif system ==\
+    \ \"Windows\":\n    font = \"DFKai-SB\"\n    monofont = \"Courier\"\nelif system\
+    \ == \"Darwin\":\n    font = \"DFKaiShu-SB-Estd-BF\"\n    monofont = \"SourceCodePro-Black.ttf\"\
+    \nelse:\n    font = \"Arial\"\n    monofont = \"Courier\"\nfontsize = \"12\"\n\
+    margin = \"1in\"\n\ncommand_main = \"pandoc -o ../pdf/report.pdf cover_and_abstract.yml\"\
+    \ncommand_sub_target = []\n\nfor i in range(root.childCount()):\n    node1 = root.child(i)\n\
+    \    if node1.text(0) != 'markdown':\n        continue\n    for j in range(node1.childCount()):\n\
     \        node2 = node1.child(j)\n        if node2.text(0) == 'paragraph':\n  \
     \          for k in range(node2.childCount()):\n                command_main +=\
     \ \" paragraph/\" + node2.child(k).text(1)\n        elif node2.text(0) == 'appendix':\n\
     \            for k in range(node2.childCount()):\n                command_sub_target.append(\"\
     appendix/\" + node2.child(k).text(1))\n\ncommand_main += f\" reference.md --pdf-engine=xelatex\
-    \ --mathjax -V lang=zh-cmn -N --toc --highlight-style kate -V documentclass=report\
-    \  --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-eqnos --template=template_{language}.tex\
+    \ --mathjax -V lang=zh-cmn -N --toc -V monofont={monofont} -V documentclass=report\
+    \ --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-eqnos --template=template_{language}.tex\
     \ -V \\\"CJKmainfont:{font}\\\" -V fontsize={fontsize}pt -V geometry:margin={margin}\
     \ --bibliography=refer.bib --csl=ieee.csl\"\nfor target in command_sub_target:\n\
     \    command_main += f\" --include-after={target}.tex\"\n\ncommand_sub = \"pandoc\
-    \ {0} -o {0}.tex --pdf-engine=xelatex --mathjax --highlight-style kate -V documentclass=report\"\
-    \n\nprint(\"---Pandoc---\")\nif system in {\"Linux\", \"Darwin\"}:\n    os.system(\"\
+    \ {0} -o {0}.tex --pdf-engine=xelatex --mathjax -V documentclass=report\"\n\n\
+    print(\"---Pandoc---\")\nif system in {\"Linux\", \"Darwin\"}:\n    os.system(\"\
     mkdir -p ../pdf\")\nelif system == \"Windows\":\n    os.system(\"if not exist\
     \ ..\\pdf mkdir ..\\pdf\")\nfor target in command_sub_target:\n    print(command_sub.format(target))\n\
     \    print(\"Result code:\", os.system(command_sub.format(target)))\nprint(command_main)\n\
