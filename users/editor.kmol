@@ -2,36 +2,67 @@
 
 data:
   -8274138291052271170: ''
-  -7910370536418068563: "import os\nimport platform\n\nchdir(QDir(root_path).filePath('../markdown'))\n\
-    \nlanguage = \"en\"\nsystem = platform.system()\nif system == \"Linux\":\n   \
-    \ font = \"ukai.ttc\"\n    monofont = \"\\\"Ubuntu Mono\\\"\"\nelif system ==\
-    \ \"Windows\":\n    font = \"DFKai-SB\"\n    monofont = \"Courier\"\nelif system\
-    \ == \"Darwin\":\n    font = \"DFKaiShu-SB-Estd-BF\"\n    monofont = \"SourceCodePro-Black.ttf\"\
-    \nelse:\n    font = \"Arial\"\n    monofont = \"Courier\"\nfontsize = \"12\"\n\
-    margin = \"1in\"\n\ncommand_main = \"pandoc -o ../pdf/report.pdf cover_and_abstract.yml\"\
-    \ncommand_sub_target = []\n\nfor i in range(root.childCount()):\n    node1 = root.child(i)\n\
-    \    if node1.text(0) != 'markdown':\n        continue\n    for j in range(node1.childCount()):\n\
-    \        node2 = node1.child(j)\n        if node2.text(0) == 'paragraph':\n  \
-    \          for k in range(node2.childCount()):\n                command_main +=\
-    \ \" paragraph/\" + node2.child(k).text(1)\n        elif node2.text(0) == 'appendix':\n\
-    \            for k in range(node2.childCount()):\n                command_sub_target.append(\"\
-    appendix/\" + node2.child(k).text(1))\n\ncommand_main += f\" reference.md --pdf-engine=xelatex\
-    \ --mathjax -V lang=zh-cmn -N --toc -V monofont={monofont} -V documentclass=report\
-    \ --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-eqnos --template=template_{language}.tex\
-    \ -V \\\"CJKmainfont:{font}\\\" -V fontsize={fontsize}pt -V geometry:margin={margin}\
-    \ --bibliography=refer.bib --csl=ieee.csl\"\nfor target in command_sub_target:\n\
-    \    command_main += f\" --include-after={target}.tex\"\n\ncommand_sub = \"pandoc\
-    \ {0} -o {0}.tex --pdf-engine=xelatex --mathjax -V documentclass=report\"\n\n\
-    print(\"---Pandoc---\")\nif system in {\"Linux\", \"Darwin\"}:\n    os.system(\"\
-    mkdir -p ../pdf\")\nelif system == \"Windows\":\n    os.system(\"if not exist\
-    \ ..\\pdf mkdir ..\\pdf\")\nfor target in command_sub_target:\n    print(command_sub.format(target))\n\
-    \    print(\"Result code:\", os.system(command_sub.format(target)))\nprint(command_main)\n\
-    print(\"Result code:\", os.system(command_main))\nfor target in command_sub_target:\n\
-    \    if is_file(target + '.tex'):\n        rm_file(target + '.tex')\nprint('-'\
-    \ * 12)\n"
-  -4008157524036936907: 'Report PDF
+  -7910370536418068563: |
+    import os
+    import platform
 
-    '
+    chdir(QDir(root_path).filePath('../markdown'))
+
+    language = "en"
+    system = platform.system()
+    if system == "Linux":
+        font = "ukai.ttc"
+        monofont = "\"Ubuntu Mono\""
+    elif system == "Windows":
+        font = "DFKai-SB"
+        monofont = "Courier"
+    elif system == "Darwin":
+        font = "DFKaiShu-SB-Estd-BF"
+        monofont = "SourceCodePro-Black.ttf"
+    else:
+        font = "Arial"
+        monofont = "Courier"
+    fontsize = "12"
+    margin = "1in"
+
+    command_main = "pandoc -o ../pdf/report.pdf cover_and_abstract.yml"
+    command_sub_target = []
+
+    for i in range(root.childCount()):
+        node1 = root.child(i)
+        if node1.text(0) != 'markdown':
+            continue
+        for j in range(node1.childCount()):
+            node2 = node1.child(j)
+            if node2.text(0) == 'paragraph':
+                for k in range(node2.childCount()):
+                    command_main += " paragraph/" + node2.child(k).text(1)
+            elif node2.text(0) == 'appendix':
+                for k in range(node2.childCount()):
+                    command_sub_target.append("appendix/" + node2.child(k).text(1))
+
+    command_main += f" reference.md --pdf-engine=xelatex --mathjax -V lang=zh-cmn -N --toc -V monofont={monofont} -V documentclass=report --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-eqnos --template=template_{language}.tex -V \"CJKmainfont:{font}\" -V fontsize={fontsize}pt -V geometry:margin={margin} --bibliography=refer.bib --csl=ieee.csl"
+    for target in command_sub_target:
+        command_main += f" --include-after={target}.tex"
+
+    command_sub = "pandoc {0} -o {0}.tex --pdf-engine=xelatex --mathjax -V documentclass=report"
+
+    print("---Pandoc---")
+    if system in {"Linux", "Darwin"}:
+        os.system("mkdir -p ../pdf")
+    elif system == "Windows":
+        os.system("if not exist ..\pdf mkdir ..\pdf")
+    for target in command_sub_target:
+        print(command_sub.format(target))
+        print("Result code:", os.system(command_sub.format(target)))
+    print(command_main)
+    print("Result code:", os.system(command_main))
+    for target in command_sub_target:
+        if is_file(target + '.tex'):
+            rm_file(target + '.tex')
+    print('-' * 12)
+  -4008157524036936907: |
+    Report PDF
   573871701012115048: ''
   3858408120588497497: ''
   5537612455961042049: ''
