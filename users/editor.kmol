@@ -18,7 +18,7 @@ data:
         monofont = "Courier"
     elif system == "Darwin":
         font = "DFKaiShu-SB-Estd-BF"
-        monofont = "SourceCodePro-Black.ttf"
+        monofont = "\"Andale Mono\""
     else:
         font = "Arial"
         monofont = "Courier"
