@@ -45,9 +45,9 @@ $if(CJKmainfont)$
     \XeTeXlinebreakskip = 0pt plus 1pt
     \newfontlanguage{Chinese}{CHN}
     % 章次20級，節次16級，小節次以下14級，本文12級字
-    \def\LARGE{\fontsize{20}{30}\selectfont}%章次
-    \def\Large{\fontsize{16}{24}\selectfont}%節次
-    \def\large{\fontsize{14}{21}\selectfont}%小節次
+    \def\LARGE{\fontsize{20}{30}\selectfont}  % 章次
+    \def\Large{\fontsize{16}{24}\selectfont}  % 節次
+    \def\large{\fontsize{14}{21}\selectfont}  % 小節次
     \renewcommand{\figurename}{Figure}
     \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
     \renewcommand{\tablename}{Table}
@@ -66,9 +66,9 @@ $if(CJKmainfont)$
     \setmonofont{$monofont$}
     % 重製章節標籤
     \usepackage{titlesec}
-    \titleformat{\chapter}[block]{\LARGE\centering}{\thechapter}{0.5em}{}
-    \titleformat{\section}[block]{\Large}{\thesection}{0.5em}{}
-    \titleformat{\subsection}[block]{\large}{\thesubsection}{0.5em}{}
+    \titleformat{\chapter}[block]{\LARGE\bfseries\centering}{\thechapter}{0.5em}{}
+    \titleformat{\section}[block]{\Large\bfseries}{\thesection}{0.5em}{}
+    \titleformat{\subsection}[block]{\large\bfseries}{\thesubsection}{0.5em}{}
     % 重製目錄
     \usepackage{titletoc}
     \titlespacing{\chapter}{0pt}{*0}{*2}
@@ -327,32 +327,32 @@ $endif$
 
 % Abstract EN
 $if(abstract_en)$
-\renewcommand{\abstractname}{\LARGE \center Abstract}
-\chapter*{$title_en$}
+\renewcommand{\abstractname}{\LARGE\center Abstract}
+\chapter*{\normalfont $title_en$}
 \addcontentsline{toc}{chapter}{English Abstract}
 \vspace{1.5cm}
-\centerline{Student: $author_en$ \hfill Advisor: $advisor_en$}
+\fontsize{14}{21}\selectfont\centerline{Student: $author_en$ \hfill Advisor: $advisor_en$}
 \vspace{1.5cm}
-\centerline{$institute_en$}
-\centerline{$university_en$}
-\vspace{2cm}
-\centerline{\fontsize{20}{30}\selectfont{\textbf{Abstract}}}
+\fontsize{14}{21}\selectfont\centerline{$institute_en$}
+\fontsize{14}{21}\selectfont\centerline{$university_en$}
 \vspace{1cm}
+\centerline{\fontsize{20}{30}\selectfont{\textbf{Abstract}}}
+\vspace{0.5cm}
 \fontsize{14}{21}\selectfont{$abstract_en$}
 $endif$
 
 % Abstract ZH
 $if(abstract_zh)$
-\renewcommand{\abstractname}{\LARGE \center 中文摘要}
-\chapter*{$title_zh$}
+\renewcommand{\abstractname}{\LARGE\center 中文摘要}
+\chapter*{\normalfont $title_zh$}
 \addcontentsline{toc}{chapter}{Chinese Abstract}
 \vspace{1.5cm}
-\centerline{學生：$author_zh$ \hfill 指導教授：$advisor_zh$}
+\fontsize{14}{21}\selectfont\centerline{學生：$author_zh$ \hfill 指導教授：$advisor_zh$}
 \vspace{1.5cm}
-\centerline{$university_zh$ $institute_zh$}
-\vspace{2cm}
-\centerline{\fontsize{20}{30}\selectfont{摘要}}
+\fontsize{14}{21}\selectfont\centerline{$university_zh$ $institute_zh$}
 \vspace{1cm}
+\centerline{\fontsize{20}{30}\selectfont{\textbf{摘要}}}
+\vspace{0.5cm}
 \fontsize{14}{21}\selectfont{$abstract_zh$}
 $endif$
 

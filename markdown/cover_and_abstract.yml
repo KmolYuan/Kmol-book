@@ -32,17 +32,17 @@ watermark: images/watermark
 abstract_zh: |
     本研究 ...
 
-    \
+    &nbsp;
 
     \noindent
     關鍵詞：
 abstract_en: |
     About my project ...
 
-    \
+    &nbsp;
 
     \noindent
-    **Keywords:**
+    Keywords:
 acknowledgements: |
     感謝很多人。
 symbols: |
